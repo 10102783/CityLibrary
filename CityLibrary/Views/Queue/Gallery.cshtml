@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Message Gallery";
+    var messages = Model as IEnumerable<QueueMessageModel>;
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-success mb-4">Message Gallery</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @if (messages != null && messages.Any())
+        {
+            foreach (var message in messages)
+            {
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Message</h5>
+                            <p class="card-text">@message.MessageText</p>
+                            <form asp-controller="Queue" asp-action="DeleteMessage" method="post" style="display: inline;">
+                                <input type="hidden" name="messageId" value="@message.MessageId" />
+                                <input type="hidden" name="popReceipt" value="@message.PopReceipt" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p class="text-center text-muted">No messages in the queue yet.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Add Bootstrap CSS link if not included already -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+

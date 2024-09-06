@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9; /* Background color for the entire page */
+        }
+
+        .privacy-header {
+            background: #0056b3; /* Header background color */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #004494; /* Header border color */
+        }
+
+            .privacy-header h1 {
+                margin: 0;
+                font-size: 2.5em;
+                font-weight: bold; /* Header text weight */
+            }
+
+        .privacy-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto; /* Container margin for spacing */
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px; /* Container border radius */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Container shadow */
+        }
+
+            .privacy-container h2 {
+                color: #0056b3; /* Heading color */
+                border-bottom: 2px solid #0056b3; /* Heading border color */
+                padding-bottom: 5px;
+                margin-bottom: 20px;
+                font-size: 1.5em; /* Heading font size */
+            }
+
+            .privacy-container p {
+                margin: 15px 0;
+                font-size: 1.1em;
+                color: #555; /* Text color */
+            }
+
+            .privacy-container ul {
+                list-style: disc;
+                margin: 15px 0;
+                padding-left: 20px;
+            }
+
+            .privacy-container li {
+                margin-bottom: 10px;
+            }
+
+        .privacy-footer {
+            text-align: center;
+            padding: 20px;
+            background: #0056b3; /* Footer background color */
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+            .privacy-footer a {
+                color: #0056b3;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                .privacy-footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <header class="privacy-header">
+        <h1>@ViewData["Title"]</h1>
+    </header>
+
+    <div class="privacy-container">
+        <h2>Introduction</h2>
+        <p>Welcome to our Privacy Policy page. Your privacy is important to us. This policy explains how we collect, use, and protect your information.</p>
+
+        <h2>Information We Collect</h2>
+        <ul>
+            <li><strong>Personal Information:</strong> We may collect your name, email address, and other contact details.</li>
+            <li><strong>Usage Data:</strong> We collect data about how you use our website, including your IP address and browsing behavior.</li>
+            <li><strong>Cookies:</strong> We use cookies to enhance your experience and analyze site traffic.</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>Your information helps us to:</p>
+        <ul>
+            <li>Improve our website and services.</li>
+            <li>Communicate with you, if necessary.</li>
+            <li>Personalize your experience.</li>
+        </ul>
+
+        <h2>How We Protect Your Information</h2>
+        <p>We implement a variety of security measures to maintain the safety of your personal information. This includes:</p>
+        <ul>
+            <li>Encryption to protect data transmission.</li>
+            <li>Secure servers to store information.</li>
+            <li>Regular updates to our security protocols.</li>
+        </ul>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access your personal information.</li>
+            <li>Request corrections or deletions of your data.</li>
+            <li>Opt out of data collection and marketing communications.</li>
+        </ul>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy periodically. We will notify you of any changes by posting the new policy on this page.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:privacy@example.com">privacy@example.com</a>.</p>
+    </div>
+
+    <footer class="privacy-footer">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>

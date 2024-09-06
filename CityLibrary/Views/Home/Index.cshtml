@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Page Container -->
+<div class="container mt-4 d-flex flex-column align-items-center">
+    <!-- Welcome Section -->
+    <div class="welcome-container text-center mb-4">
+        <h1 class="display-4">Welcome to the City Library</h1>
+        <p class="lead">Manage and explore the city's library system with ease.</p>
+    </div>
+
+    <!-- Navigation to Other Features -->
+    <div class="navigation-container text-center mb-4">
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="@Url.Action("Index", "Borrower")" class="btn btn-custom-manage btn-lg btn-custom mb-3 mx-2">
+                <i class="fas fa-users"></i> Manage Borrowers
+            </a>
+            <a href="@Url.Action("Index", "Blob")" class="btn btn-custom-blob btn-lg btn-custom mb-3 mx-2">
+                <i class="fas fa-cloud-upload-alt"></i> Blob Storage
+            </a>
+            <a href="@Url.Action("Index", "File")" class="btn btn-custom-file btn-lg btn-custom mb-3 mx-2">
+                <i class="fas fa-file"></i> File Management
+            </a>
+            <a href="@Url.Action("Index", "Queue")" class="btn btn-custom-queue btn-lg btn-custom mb-3 mx-2">
+                <i class="fas fa-tachometer-alt"></i> Queue Storage
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Add Custom CSS -->
+<style>
+    /* General container styling */
+    .container {
+        max-width: 900px; /* Increase container width */
+        padding: 2rem; /* Add padding inside the container */
+        margin: 0 auto; /* Center container */
+    }
+
+    /* Welcome Section */
+    .welcome-container {
+        background-color: #007bff; /* Primary blue color */
+        color: white; /* White text */
+        padding: 2rem; /* Padding around content */
+        border-radius: 0.5rem; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    /* Navigation Section */
+    .navigation-container {
+        padding: 2rem; /* Padding around content */
+        border-radius: 0.5rem; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    }
+
+    /* General button styles */
+    .btn-custom {
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        border: none; /* Remove default border */
+        border-radius: 0.5rem; /* Rounded corners */
+        font-size: 1.125rem; /* Larger text */
+        padding: 0.75rem 1.5rem; /* More padding for a bigger button */
+        text-transform: uppercase; /* Uppercase text */
+        font-weight: bold; /* Bold text */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        color: white; /* White text */
+    }
+
+    .btn-custom-manage {
+        background: linear-gradient(135deg, #28a745, #218838); /* Green gradient */
+    }
+
+        .btn-custom-manage:focus, .btn-custom-manage:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34); /* Darker green on hover */
+            transform: translateY(-4px); /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+        }
+
+    .btn-custom-blob {
+        background: linear-gradient(135deg, #17a2b8, #117a8b); /* Teal gradient */
+    }
+
+        .btn-custom-blob:focus, .btn-custom-blob:hover {
+            background: linear-gradient(135deg, #117a8b, #0c5460); /* Darker teal on hover */
+            transform: translateY(-4px); /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+        }
+
+    .btn-custom-file {
+        background: linear-gradient(135deg, #ffc107, #e0a800); /* Yellow gradient */
+    }
+
+        .btn-custom-file:focus, .btn-custom-file:hover {
+            background: linear-gradient(135deg, #e0a800, #c69500); /* Darker yellow on hover */
+            transform: translateY(-4px); /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+        }
+
+    .btn-custom-queue {
+        background: linear-gradient(135deg, #dc3545, #c82333); /* Red gradient */
+    }
+
+        .btn-custom-queue:focus, .btn-custom-queue:hover {
+            background: linear-gradient(135deg, #c82333, #bd2130); /* Darker red on hover */
+            transform: translateY(-4px); /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+        }
+
+    /* Bubble effect */
+    .btn-custom::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(0, 123, 255, 0.2); /* Light blue color with transparency */
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s ease;
+    }
+
+    .btn-custom:focus::before, .btn-custom:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Text color */
+    h1, h2 {
+        color: #343a40; /* Darker color for headings */
+    }
+
+    p.lead {
+        color: #6c757d; /* Gray color for the lead text */
+    }
+</style>
+
+

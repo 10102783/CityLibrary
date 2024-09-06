@@ -1,0 +1,108 @@
+﻿@model IEnumerable<CityLibrary.Models.QueueMessageModel>
+
+@{
+    ViewBag.Title = "Queue Storage";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-dark mb-4">Queue Storage</h2>
+
+    <!-- Display success messages -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Form to send a message to the queue -->
+    <form asp-controller="Queue" asp-action="SendMessage" method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="message" class="form-label">Message:</label>
+            <input type="text" id="message" name="message" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+
+    <hr />
+
+    <!-- Display messages in a gallery layout -->
+    @if (Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var message in Model)
+            {
+                <div class="col">
+                    <div class="card shadow-sm" data-bs-toggle="modal" data-bs-target="#messageModal" data-message-id="@message.MessageId" data-message-text="@message.MessageText" data-inserted-on="@message.InsertedOn" data-expires-on="@message.ExpiresOn" data-pop-receipt="@message.PopReceipt">
+                        <div class="card-body">
+                            <h5 class="card-title">Message ID: @message.MessageId</h5>
+                            <p class="card-text">@message.MessageText</p>
+                            <p class="card-text"><small class="text-muted">Inserted On: @message.InsertedOn</small></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-muted">No messages found.</p>
+    }
+</div>
+
+<!-- Modal for displaying message details -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Message Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Message ID:</strong> <span id="modalMessageId"></span></p>
+                <p><strong>Message Text:</strong> <span id="modalMessageText"></span></p>
+                <p><strong>Inserted On:</strong> <span id="modalInsertedOn"></span></p>
+                <p><strong>Expires On:</strong> <span id="modalExpiresOn"></span></p>
+                <form asp-controller="Queue" asp-action="DeleteMessage" method="post" id="deleteMessageForm">
+                    <input type="hidden" name="messageId" id="modalMessageIdInput" />
+                    <input type="hidden" name="popReceipt" id="modalPopReceiptInput" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Bootstrap JS and Popper.js links if not included already -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+<script>
+    // JavaScript to handle modal data population
+    document.addEventListener('DOMContentLoaded', function () {
+        var messageModal = document.getElementById('messageModal');
+        messageModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Button that triggered the modal
+            var messageId = button.getAttribute('data-message-id');
+            var messageText = button.getAttribute('data-message-text');
+            var insertedOn = button.getAttribute('data-inserted-on');
+            var expiresOn = button.getAttribute('data-expires-on');
+            var popReceipt = button.getAttribute('data-pop-receipt');
+
+            // Update the modal's content
+            document.getElementById('modalMessageId').textContent = messageId;
+            document.getElementById('modalMessageText').textContent = messageText;
+            document.getElementById('modalInsertedOn').textContent = insertedOn;
+            document.getElementById('modalExpiresOn').textContent = expiresOn;
+            document.getElementById('modalMessageIdInput').value = messageId;
+            document.getElementById('modalPopReceiptInput').value = popReceipt;
+        });
+    });
+</script>
+
+<!-- Add Bootstrap CSS link if not included already -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+

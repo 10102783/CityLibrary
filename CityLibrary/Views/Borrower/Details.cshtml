@@ -1,0 +1,127 @@
+﻿@model CityLibrary.Models.Borrower
+
+@{
+    ViewData["Title"] = "Borrower Details";
+}
+
+<!-- Page Container -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+    <!-- Borrower Details -->
+    <div class="details-container p-4">
+        <h4 class="text-primary">@Model.FirstName @Model.LastName</h4>
+        <hr class="my-4" />
+        <dl class="row">
+            <dt class="col-sm-4">Books Borrowed</dt>
+            <dd class="col-sm-8">@Model.BooksBorrowed</dd>
+
+            <dt class="col-sm-4">Rate per Book</dt>
+            <dd class="col-sm-8">@Model.RatePerBook.ToString("C")</dd>
+
+            <dt class="col-sm-4">Fine</dt>
+            <dd class="col-sm-8">@Model.Fine.ToString("C")</dd>
+
+            <dt class="col-sm-4">Total Amount Due</dt>
+            <dd class="col-sm-8">@Model.Total.ToString("C")</dd>
+        </dl>
+    </div>
+
+    <!-- Button Group -->
+    <div class="button-group-container mt-4 text-center">
+        <a href="/Borrower/Create" class="btn btn-primary btn-lg">Create Another Borrower</a>
+        <a href="/Borrower/Index" class="btn btn-secondary btn-lg">Back to List</a>
+    </div>
+</div>
+
+<!-- Custom CSS for styling -->
+<style>
+    /* Container Styling */
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Heading Styling */
+    .text-center {
+        text-align: center;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .text-primary {
+        color: #007bff;
+    }
+
+    /* Details Container Styling */
+    .details-container {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+        .details-container h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+    .my-4 {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Button Styling */
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 50px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #4e555b;
+        }
+
+    /* Button Group Styling */
+    .button-group-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    /* Definition List Styling */
+    dl.row {
+        margin-bottom: 0;
+    }
+
+    dt {
+        font-weight: bold;
+        padding-right: 1rem;
+    }
+
+    dd {
+        margin-bottom: 0.5rem;
+    }
+</style>

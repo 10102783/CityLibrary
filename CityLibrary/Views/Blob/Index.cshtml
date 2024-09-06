@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Blob Storage";
+    var blobs = Model as IEnumerable<string>;
+}
+
+<h2 style="text-align: center; color: #4CAF50; font-family: Arial, sans-serif;">Blob Storage</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div style="color: green; text-align: center; margin-bottom: 20px;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div style="width: 50%; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+
+    <!-- Form to upload a blob -->
+    <form asp-controller="Blob" asp-action="UploadBlob" method="post" enctype="multipart/form-data" style="margin-bottom: 20px;">
+        <h3 style="color: #333;">Upload Blob</h3>
+
+        <div style="margin-bottom: 15px;">
+            <label for="blobName" style="display: block; margin-bottom: 5px;">Blob Name:</label>
+            <input type="text" id="blobName" name="blobName" required style="width: 100%; padding: 8px; box-sizing: border-box;" />
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="file" style="display: block; margin-bottom: 5px;">File:</label>
+            <input type="file" id="file" name="file" required style="width: 100%; padding: 8px; box-sizing: border-box;" />
+        </div>
+
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Upload Blob</button>
+    </form>
+
+    <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;" />
+
+    @if (blobs != null && blobs.Any())
+    {
+        <h3 style="color: #333;">Uploaded Blobs</h3>
+        <ul style="list-style-type: none; padding: 0;">
+            @foreach (var blob in blobs)
+            {
+                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                    <img src="@Url.Action("DownloadBlob", "Blob", new { blobName = blob })" alt="@blob" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border: 1px solid #ccc;" />
+                    <span style="flex-grow: 1;">@blob</span>
+
+                    <form asp-controller="Blob" asp-action="DeleteBlob" method="post" style="display: inline; margin-right: 5px;">
+                        <input type="hidden" name="blobName" value="@blob" />
+                        <button type="submit" style="background-color: #f44336; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+                    </form>
+
+                    <a href="@Url.Action("DownloadBlob", "Blob", new { blobName = blob })" style="background-color: #2196F3; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;">Download</a>
+                </li>
+            }
+        </ul>
+
+        <a href="@Url.Action("Gallery", "Blob")" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;">View Gallery</a>
+    }
+    else
+    {
+        <p style="text-align: center;">No blobs uploaded yet.</p>
+    }
+</div>
+
+
